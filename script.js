@@ -10,13 +10,12 @@ const navLinks  = document.getElementById('nav-links');
 // On inner pages the navbar is always solid; on the home hero it fades in on scroll
 const isInnerPage = document.body.hasAttribute('data-page');
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 60 || isInnerPage) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-}, { passive: true });
+const updateNav = () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60 || isInnerPage);
+};
+
+updateNav(); // set correct state immediately on page load
+window.addEventListener('scroll', updateNav, { passive: true });
 
 hamburger.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
