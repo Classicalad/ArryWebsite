@@ -758,6 +758,42 @@ textarea { resize: vertical; min-height: 100px; }
   line-height: 1.5;
 }
 
+/* Order price summary */
+.order-total {
+  background: #fdf6ee;
+  border: 1.5px solid var(--dusty);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+}
+
+.order-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.95rem;
+  color: var(--text);
+  padding: 3px 0;
+}
+
+.order-total-divider {
+  border: none;
+  border-top: 1px solid #ddd0c8;
+  margin: 10px 0;
+}
+
+.order-total-grand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--dark);
+}
+
+.order-total-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
 .form-success {
   display: none;
   flex-direction: column;
