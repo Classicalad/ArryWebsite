@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Fennel Heads</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="menu">
+
+  <!-- ─── NAV ─────────────────────────────────────────────── -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a class="logo" href="index.html">Fennel Heads</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="about.html"   data-page="about">About</a></li>
+        <li><a href="menu.html"    data-page="menu">Menu</a></li>
+        <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
+        <li><a href="order.html"   data-page="order" class="nav-cta">Order Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── MENU ─────────────────────────────────────────────── -->
+  <section id="menu">
+    <div class="container">
+      <p class="section-eyebrow centered">What's on offer</p>
+      <h2 class="section-title centered">The Menu</h2>
+      <p class="section-subtitle">
+        All cakes are baked to order — prices shown are for a 6&Prime; round cake (serves 8–10).
+        Need a larger size? Just ask!
+      </p>
+
+      <div class="menu-grid">
+
+        <!-- Card 1 -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img
+              src="439638737_1150848245955723_5161108831316934313_n.jpg"
+              alt="Lavender Honey Cake"
+              loading="lazy"
+            />
+            <span class="menu-tag">Bestseller</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3>Lavender Honey Cake</h3>
+              <span class="price">$48</span>
+            </div>
+            <p class="menu-desc">
+              Soft almond sponge soaked in wildflower honey, layered with silky lavender
+              cream cheese frosting and finished with dried lavender and edible flowers.
+            </p>
+            <details class="ingredients-toggle">
+              <summary>Ingredients</summary>
+              <ul>
+                <li>Almond flour, plain flour, eggs, butter</li>
+                <li>Wildflower honey, caster sugar</li>
+                <li>Cream cheese, heavy cream, dried lavender</li>
+                <li>Edible flowers (seasonal)</li>
+                <li>Vanilla bean, lemon zest</li>
+              </ul>
+            </details>
+            <div class="menu-card-sizes">
+              <span>6&Prime; — $48</span>
+              <span>8&Prime; — $68</span>
+              <span>10&Prime; — $90</span>
+            </div>
+            <a href="order.html" class="btn btn-primary btn-full">Order This Cake</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img
+              src="631726620_18425406217185767_4835926683837397308_n.jpg"
+              alt="Dark Chocolate Espresso Torte"
+              loading="lazy"
+            />
+            <span class="menu-tag">Rich &amp; Decadent</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3>Dark Chocolate Espresso Torte</h3>
+              <span class="price">$54</span>
+            </div>
+            <p class="menu-desc">
+              Three layers of intensely chocolatey sponge, whipped espresso buttercream,
+              a glossy dark ganache drip, and a dusting of cocoa nibs.
+            </p>
+            <details class="ingredients-toggle">
+              <summary>Ingredients</summary>
+              <ul>
+                <li>70% dark chocolate, Dutch cocoa</li>
+                <li>Unsalted butter, eggs, caster sugar</li>
+                <li>Strong espresso, vanilla extract</li>
+                <li>Icing sugar, heavy cream</li>
+                <li>Sea salt flakes, cocoa nibs</li>
+              </ul>
+            </details>
+            <div class="menu-card-sizes">
+              <span>6&Prime; — $54</span>
+              <span>8&Prime; — $74</span>
+              <span>10&Prime; — $98</span>
+            </div>
+            <a href="order.html" class="btn btn-primary btn-full">Order This Cake</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img
+              src="623995257_18094344826946684_7999175894473994298_n.jpg"
+              alt="Strawberry Layer Cake"
+              loading="lazy"
+            />
+            <span class="menu-tag">Seasonal</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3>Strawberry Matcha Layer Cake</h3>
+              <span class="price">$52</span>
+            </div>
+            <p class="menu-desc">
+              Delicate Japanese matcha sponge with a fresh strawberry compote filling,
+              white chocolate mascarpone frosting, and freeze-dried strawberry crumble.
+            </p>
+            <details class="ingredients-toggle">
+              <summary>Ingredients</summary>
+              <ul>
+                <li>Ceremonial grade matcha, plain flour</li>
+                <li>Fresh strawberries, white chocolate</li>
+                <li>Mascarpone, heavy cream, eggs</li>
+                <li>Freeze-dried strawberries, honey</li>
+                <li>Vanilla bean, lemon juice</li>
+              </ul>
+            </details>
+            <div class="menu-card-sizes">
+              <span>6&Prime; — $52</span>
+              <span>8&Prime; — $72</span>
+              <span>10&Prime; — $96</span>
+            </div>
+            <a href="order.html" class="btn btn-primary btn-full">Order This Cake</a>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img
+              src="438902770_364248175987534_5120223656493692306_n.jpg"
+              alt="Lemon Elderflower Celebration Cake"
+              loading="lazy"
+            />
+            <span class="menu-tag">Fan Favourite</span>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3>Lemon Elderflower Cake</h3>
+              <span class="price">$50</span>
+            </div>
+            <p class="menu-desc">
+              Light and zesty lemon sponge brushed with elderflower cordial, filled with
+              tangy lemon curd and elderflower mascarpone, topped with crystallised lemon.
+            </p>
+            <details class="ingredients-toggle">
+              <summary>Ingredients</summary>
+              <ul>
+                <li>Plain flour, unsalted butter, eggs</li>
+                <li>Fresh lemon zest &amp; juice, caster sugar</li>
+                <li>Elderflower cordial, mascarpone</li>
+                <li>Lemon curd, icing sugar</li>
+                <li>Crystallised lemon slices, edible flowers</li>
+              </ul>
+            </details>
+            <div class="menu-card-sizes">
+              <span>6&Prime; — $50</span>
+              <span>8&Prime; — $70</span>
+              <span>10&Prime; — $94</span>
+            </div>
+            <a href="order.html" class="btn btn-primary btn-full">Order This Cake</a>
+          </div>
+        </div>
+
+      </div><!-- /.menu-grid -->
+
+      <!-- Ice Cream Add-on Banner -->
+      <div class="icecream-banner">
+        <div class="icecream-banner-text">
+          <h3>🍦 Add a tub of home-churned ice cream!</h3>
+          <p>
+            Each cake can be paired with a 500ml tub of our hand-churned ice cream.
+            Current flavours: <strong>Brown Butter Caramel</strong>,
+            <strong>Salted Honey Vanilla</strong>, and <strong>Raspberry Swirl</strong>.
+          </p>
+          <span class="price-tag">+$18 per tub</span>
+        </div>
+        <img
+          src="626688793_18094939057758270_4780236307043766444_n.jpg"
+          alt="Home-churned mint chocolate chip ice cream"
+          class="icecream-img"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo">Fennel Heads</span>
+        <p>Small-batch cakes &amp; ice cream, made with love in Toronto.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="order.html">Order</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Along</h4>
+        <a href="https://www.instagram.com/fennel.heads/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @fennel.heads
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Fennel Heads. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

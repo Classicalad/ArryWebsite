@@ -7,8 +7,11 @@ const navbar    = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('nav-links');
 
+// On inner pages the navbar is always solid; on the home hero it fades in on scroll
+const isInnerPage = document.body.hasAttribute('data-page');
+
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
+  if (window.scrollY > 60 || isInnerPage) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
@@ -159,19 +162,10 @@ if (orderForm) {
   });
 }
 
-/* ── Active nav link highlighting on scroll ── */
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      navItems.forEach(a => {
-        a.style.opacity = a.getAttribute('href') === `#${id}` ? '1' : '0.65';
-      });
-    }
+/* ── Active nav link highlighting (per-page) ── */
+const currentPage = document.body.dataset.page;
+if (currentPage) {
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    if (a.dataset.page === currentPage) a.classList.add('active');
   });
-}, { threshold: 0.4 });
-
-sections.forEach(s => sectionObserver.observe(s));
+}

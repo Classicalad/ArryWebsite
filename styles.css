@@ -193,6 +193,9 @@ h3 { font-size: 1.3rem; font-weight: 600; }
 
 .nav-cta:hover { background: var(--brown) !important; color: var(--white) !important; }
 
+#navbar.scrolled .nav-links a.active { color: var(--dusty); }
+#navbar:not(.scrolled) .nav-links a.active { color: var(--rose); }
+
 .hamburger {
   display: none;
   background: none;
