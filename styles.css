@@ -135,19 +135,19 @@ h3 { font-size: 1.3rem; font-weight: 600; }
   top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 16px 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
-  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  background: rgba(0,0,0,0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition), backdrop-filter var(--transition);
 }
 
 #navbar.scrolled {
   background: rgba(253,248,242,0.97);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: var(--shadow-sm);
   padding: 10px 0;
 }
-
-/* Remove gradient scrim on inner pages (always scrolled) */
-body[data-page] #navbar:not(.scrolled) { background: none; }
 
 .nav-inner {
   max-width: 1200px;
@@ -165,7 +165,7 @@ body[data-page] #navbar:not(.scrolled) { background: none; }
   color: var(--white);
   transition: color var(--transition), text-shadow var(--transition);
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
 
 #navbar.scrolled .logo { color: var(--brown); text-shadow: none; }
@@ -183,7 +183,7 @@ body[data-page] #navbar:not(.scrolled) { background: none; }
   text-transform: uppercase;
   color: rgba(255,255,255,0.9);
   transition: color var(--transition), text-shadow var(--transition);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
 
 #navbar.scrolled .nav-links a { color: var(--text); text-shadow: none; }
