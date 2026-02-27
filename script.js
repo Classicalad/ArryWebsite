@@ -82,22 +82,33 @@ if (dateInput) {
   dateInput.min = minDate.toISOString().split('T')[0];
 }
 
-/* ── Order form: simple validation & success state ── */
+/* ── Order form: validation + Formspree submission ── */
 const orderForm   = document.getElementById('order-form');
 const formSuccess = document.getElementById('form-success');
+const formError   = document.getElementById('form-error');
 
 if (orderForm) {
-  orderForm.addEventListener('submit', (e) => {
+  // Mirror the customer's email into the hidden _replyto field so Arry
+  // can hit Reply directly from his inbox.
+  const emailField   = document.getElementById('email');
+  const replytoField = document.getElementById('replyto-mirror');
+  if (emailField && replytoField) {
+    emailField.addEventListener('input', () => {
+      replytoField.value = emailField.value;
+    });
+  }
+
+  orderForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     let valid = true;
 
     // Clear previous errors
     orderForm.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    if (formError) formError.hidden = true;
 
     // Validate required fields
-    const required = orderForm.querySelectorAll('[required]');
-    required.forEach(field => {
+    orderForm.querySelectorAll('[required]').forEach(field => {
       if (!field.value.trim()) {
         field.classList.add('error');
         valid = false;
@@ -105,7 +116,6 @@ if (orderForm) {
     });
 
     // Basic email check
-    const emailField = document.getElementById('email');
     if (emailField && emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
       emailField.classList.add('error');
       valid = false;
@@ -117,17 +127,35 @@ if (orderForm) {
       return;
     }
 
-    // Simulate form submission (replace with real backend / Formspree / etc.)
     const submitBtn = orderForm.querySelector('[type="submit"]');
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      orderForm.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-      submitBtn.style.display = 'none';
-      formSuccess.style.display = 'flex';
-      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 1200);
+    const endpoint = orderForm.dataset.formspree;
+
+    try {
+      const response = await fetch(endpoint, {
+        method:  'POST',
+        body:    new FormData(orderForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        orderForm.querySelectorAll('input:not([type=hidden]), select, textarea').forEach(el => el.value = '');
+        submitBtn.style.display = 'none';
+        formSuccess.style.display = 'flex';
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error('Server returned ' + response.status);
+      }
+    } catch {
+      submitBtn.textContent = 'Send Order Request';
+      submitBtn.disabled = false;
+      if (formError) {
+        formError.hidden = false;
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
   });
 }
 

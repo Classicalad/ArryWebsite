@@ -354,7 +354,12 @@
         </ul>
       </div>
 
-      <form class="order-form" id="order-form" novalidate>
+      <form class="order-form" id="order-form" novalidate
+            data-formspree="https://formspree.io/f/REPLACE_WITH_FORM_ID">
+        <!-- Formspree routing — do not remove these hidden fields -->
+        <input type="hidden" name="_subject"  value="New Cake Order — Fennel Heads" />
+        <input type="hidden" name="_cc"       value="dlriel@rogers.com,susanzhang88@gmail.com" />
+        <input type="hidden" name="_replyto"  value="" id="replyto-mirror" />
         <div class="form-row">
           <div class="form-group">
             <label for="name">Your Name *</label>
@@ -411,6 +416,10 @@
         <div class="form-success" id="form-success" hidden>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
           <p>Your request has been sent! Arry will be in touch shortly.</p>
+        </div>
+        <div class="form-error" id="form-error" hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <p>Something went wrong — please try again or reach out on <a href="https://www.instagram.com/fennel.heads/" target="_blank" rel="noopener noreferrer">Instagram</a>.</p>
         </div>
       </form>
     </div>
