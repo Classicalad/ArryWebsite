@@ -125,7 +125,7 @@ if (orderForm) {
     setTimeout(() => {
       orderForm.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
       submitBtn.style.display = 'none';
-      formSuccess.hidden = false;
+      formSuccess.style.display = 'flex';
       formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 1200);
   });

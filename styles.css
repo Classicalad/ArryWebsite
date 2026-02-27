@@ -748,7 +748,7 @@ textarea { resize: vertical; min-height: 100px; }
 }
 
 .form-success {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: 12px;
