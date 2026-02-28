@@ -820,7 +820,8 @@ textarea { resize: vertical; min-height: 100px; }
   color: #c62828;
 }
 
-.form-error[hidden] { display: none; }
+.form-error[hidden]     { display: none; }
+.order-total-row[hidden] { display: none; }
 .form-error svg     { color: #e53935; }
 .form-error a       { color: #c62828; text-decoration: underline; }
 
