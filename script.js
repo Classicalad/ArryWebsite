@@ -161,6 +161,74 @@ if (orderForm) {
   });
 }
 
+/* ── Order form: live price calculator ── */
+(function () {
+  const CAKE_PRICES = {
+    'Lavender Honey Cake':           { '6': 48, '8': 68,  '10': 90 },
+    'Dark Chocolate Espresso Torte': { '6': 54, '8': 74,  '10': 98 },
+    'Strawberry Matcha Layer Cake':  { '6': 52, '8': 72,  '10': 96 },
+    'Lemon Elderflower Cake':        { '6': 50, '8': 70,  '10': 94 },
+  };
+  const ICE_CREAM_PRICE = 18;
+  const SIZE_LABELS = {
+    '6':  '6″ (serves 8–10)',
+    '8':  '8″ (serves 14–18)',
+    '10': '10″ (serves 22–26)',
+  };
+
+  const cakeEl     = document.getElementById('cake');
+  const sizeEl     = document.getElementById('size');
+  const iceEl      = document.getElementById('icecream');
+  const totalBox   = document.getElementById('order-total');
+  const totalHidden = document.getElementById('total-hidden');
+  if (!cakeEl || !sizeEl || !iceEl || !totalBox) return;
+
+  const lblCake    = document.getElementById('total-cake-label');
+  const priceCake  = document.getElementById('total-cake-price');
+  const iceRow     = document.getElementById('total-ice-row');
+  const grandEl    = document.getElementById('total-grand');
+
+  function updateSizeLabels() {
+    const prices = CAKE_PRICES[cakeEl.value];
+    Array.from(sizeEl.options).forEach(opt => {
+      const key = opt.dataset.key;
+      opt.textContent = (prices && key in prices)
+        ? `${SIZE_LABELS[key]} — $${prices[key]}`
+        : SIZE_LABELS[key] || opt.textContent;
+    });
+  }
+
+  function updateTotal() {
+    const cake    = cakeEl.value;
+    const prices  = CAKE_PRICES[cake];
+    const sizeKey = sizeEl.options[sizeEl.selectedIndex]?.dataset?.key;
+    const hasIce  = iceEl.value !== 'none';
+
+    if (!prices || !sizeKey) {
+      totalBox.hidden = true;
+      if (totalHidden) totalHidden.value = '';
+      return;
+    }
+
+    const cakePrice = prices[sizeKey];
+    const grand     = cakePrice + (hasIce ? ICE_CREAM_PRICE : 0);
+
+    totalBox.hidden         = false;
+    lblCake.textContent     = `${cake} (${SIZE_LABELS[sizeKey].split(' ')[0]})`;
+    priceCake.textContent   = `$${cakePrice}`;
+    iceRow.hidden           = !hasIce;
+    grandEl.textContent     = `$${grand}`;
+    if (totalHidden) totalHidden.value = `$${grand}`;
+  }
+
+  cakeEl.addEventListener('change', () => { updateSizeLabels(); updateTotal(); });
+  sizeEl.addEventListener('change', updateTotal);
+  iceEl.addEventListener('change', updateTotal);
+
+  updateSizeLabels();
+  updateTotal();
+})();
+
 /* ── Active nav link highlighting (per-page) ── */
 const currentPage = document.body.dataset.page;
 if (currentPage) {
