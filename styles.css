@@ -948,7 +948,7 @@ footer {
 
 /* ── What We Make ── */
 #what-we-make {
-  padding: 100px 0 0;
+  padding: 100px 0;
   background: var(--cream);
   text-align: center;
 }
@@ -957,7 +957,10 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 520px;
-  margin-top: 56px;
+  margin-top: 40px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(44,26,18,0.14);
 }
 
 .what-card {
