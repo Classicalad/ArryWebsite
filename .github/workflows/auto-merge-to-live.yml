@@ -1,0 +1,23 @@
+name: Auto-merge claude branches to live
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+jobs:
+  merge-to-live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge into live
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout live
+          git merge --no-ff origin/${{ github.ref_name }} -m "Auto-merge ${{ github.ref_name }} into live"
+          git push origin live
