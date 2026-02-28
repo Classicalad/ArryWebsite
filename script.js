@@ -84,6 +84,16 @@ if (dateInput) {
   dateInput.min = minDate.toISOString().split('T')[0];
 }
 
+/* ── Pre-select cake from URL parameter ── */
+const cakeSelect = document.getElementById('cake');
+if (cakeSelect) {
+  const preselect = new URLSearchParams(window.location.search).get('cake');
+  if (preselect) {
+    cakeSelect.value = preselect;
+    cakeSelect.dispatchEvent(new Event('change'));
+  }
+}
+
 /* ── Order form: validation + Formspree submission ── */
 const orderForm   = document.getElementById('order-form');
 const formSuccess = document.getElementById('form-success');
