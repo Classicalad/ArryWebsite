@@ -904,7 +904,11 @@ footer {
 @media (max-width: 768px) {
   #hero { min-height: 100svh; }
 
-  .hamburger { display: block; }
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 1001; /* keep hamburger/✕ above the full-screen overlay */
+  }
 
   .nav-links {
     display: none;
@@ -916,6 +920,8 @@ footer {
     align-items: center;
     gap: 40px;
     z-index: 999;
+    overflow-y: auto;
+    padding: 80px 24px 40px; /* top clears the navbar; bottom for breathing room */
   }
 
   .nav-links.open { display: flex; }
