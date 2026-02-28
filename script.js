@@ -123,6 +123,14 @@ if (orderForm) {
       valid = false;
     }
 
+    // Delivery address required when delivery is selected
+    const deliveryAddrEl = document.getElementById('delivery-address');
+    const isDelivery = document.querySelector('input[name="fulfilment"]:checked')?.value?.includes('delivery');
+    if (isDelivery && deliveryAddrEl && !deliveryAddrEl.value.trim()) {
+      deliveryAddrEl.classList.add('error');
+      valid = false;
+    }
+
     if (!valid) {
       const firstError = orderForm.querySelector('.error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -164,29 +172,38 @@ if (orderForm) {
 /* ── Order form: live price calculator ── */
 (function () {
   const CAKE_PRICES = {
-    'Lavender Honey Cake':           { '6': 48, '8': 68,  '10': 90 },
-    'Dark Chocolate Espresso Torte': { '6': 54, '8': 74,  '10': 98 },
-    'Strawberry Matcha Layer Cake':  { '6': 52, '8': 72,  '10': 96 },
-    'Lemon Elderflower Cake':        { '6': 50, '8': 70,  '10': 94 },
+    'Lemon Lavender Cake':        { '6': 48, '8': 68, '10': 90 },
+    'Chocolate Mascarpone Cake':  { '6': 54, '8': 74, '10': 98 },
+    'Strawberry Matcha Layer Cake':{ '6': 52, '8': 72, '10': 96 },
+    'Vanilla Cloud Cake':         { '6': 50, '8': 70, '10': 94 },
   };
   const ICE_CREAM_PRICE = 18;
+  const DELIVERY_PRICE  = 5;
   const SIZE_LABELS = {
     '6':  '6″ (serves 8–10)',
     '8':  '8″ (serves 14–18)',
     '10': '10″ (serves 22–26)',
   };
 
-  const cakeEl     = document.getElementById('cake');
-  const sizeEl     = document.getElementById('size');
-  const iceEl      = document.getElementById('icecream');
-  const totalBox   = document.getElementById('order-total');
-  const totalHidden = document.getElementById('total-hidden');
+  const cakeEl          = document.getElementById('cake');
+  const sizeEl          = document.getElementById('size');
+  const iceEl           = document.getElementById('icecream');
+  const totalBox        = document.getElementById('order-total');
+  const totalHidden     = document.getElementById('total-hidden');
+  const deliveryAddrGrp = document.getElementById('delivery-address-group');
+  const deliveryAddrEl  = document.getElementById('delivery-address');
   if (!cakeEl || !sizeEl || !iceEl || !totalBox) return;
 
-  const lblCake    = document.getElementById('total-cake-label');
-  const priceCake  = document.getElementById('total-cake-price');
-  const iceRow     = document.getElementById('total-ice-row');
-  const grandEl    = document.getElementById('total-grand');
+  const lblCake       = document.getElementById('total-cake-label');
+  const priceCake     = document.getElementById('total-cake-price');
+  const iceRow        = document.getElementById('total-ice-row');
+  const deliveryRow   = document.getElementById('total-delivery-row');
+  const grandEl       = document.getElementById('total-grand');
+
+  function getDelivery() {
+    const checked = document.querySelector('input[name="fulfilment"]:checked');
+    return checked ? checked.value.includes('delivery') : false;
+  }
 
   function updateSizeLabels() {
     const prices = CAKE_PRICES[cakeEl.value];
@@ -203,6 +220,7 @@ if (orderForm) {
     const prices  = CAKE_PRICES[cake];
     const sizeKey = sizeEl.options[sizeEl.selectedIndex]?.dataset?.key;
     const hasIce  = iceEl.value !== 'none';
+    const hasDel  = getDelivery();
 
     if (!prices || !sizeKey) {
       totalBox.hidden = true;
@@ -211,15 +229,26 @@ if (orderForm) {
     }
 
     const cakePrice = prices[sizeKey];
-    const grand     = cakePrice + (hasIce ? ICE_CREAM_PRICE : 0);
+    const grand     = cakePrice + (hasIce ? ICE_CREAM_PRICE : 0) + (hasDel ? DELIVERY_PRICE : 0);
 
     totalBox.hidden         = false;
     lblCake.textContent     = `${cake} (${SIZE_LABELS[sizeKey].split(' ')[0]})`;
     priceCake.textContent   = `$${cakePrice}`;
     iceRow.hidden           = !hasIce;
+    if (deliveryRow) deliveryRow.hidden = !hasDel;
     grandEl.textContent     = `$${grand}`;
     if (totalHidden) totalHidden.value = `$${grand}`;
   }
+
+  // Show/hide address field when fulfilment changes
+  document.querySelectorAll('input[name="fulfilment"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const isDelivery = getDelivery();
+      if (deliveryAddrGrp) deliveryAddrGrp.hidden = !isDelivery;
+      if (deliveryAddrEl)  deliveryAddrEl.required = isDelivery;
+      updateTotal();
+    });
+  });
 
   cakeEl.addEventListener('change', () => { updateSizeLabels(); updateTotal(); });
   sizeEl.addEventListener('change', updateTotal);
