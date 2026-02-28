@@ -913,14 +913,17 @@ footer {
   .nav-links {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100svh; /* viewport units bypass the backdrop-filter containing-block on #navbar */
     background: var(--dark);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 28px;
     z-index: 999;
-    padding: 60px 24px 20px; /* modest top clearance for navbar, small bottom */
+    padding: 60px 24px 20px;
   }
 
   .nav-links.open { display: flex; }
