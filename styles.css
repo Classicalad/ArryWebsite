@@ -918,10 +918,9 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 28px;
     z-index: 999;
-    overflow-y: auto;
-    padding: 80px 24px 40px; /* top clears the navbar; bottom for breathing room */
+    padding: 60px 24px 20px; /* modest top clearance for navbar, small bottom */
   }
 
   .nav-links.open { display: flex; }
